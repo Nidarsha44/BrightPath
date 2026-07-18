@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BrightPath | Gallery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Page-specific CSS for the Gallery Page only, kept in its own external file (allowed by spec as an
+         alternative to an embedded <style> block) so it stays fully separate from the Global CSS -->
+    <link rel="stylesheet" href="css/gallery.css">
+</head>
+<body>
+    <!-- DO NOT MODIFY: header, nav, and footer structure below -->
+    <header>
+        <div class="utility-bar">
+            <span>UN SDG 4 &middot; Quality Education</span>
+            <a href="#">Accessibility &amp; Compliance</a>
+        </div>
+        <div class="main-nav">
+            <nav class="nav-group nav-left">
+                <a href="home.html">Home</a>
+                <a href="gallery.html" class="active">Gallery</a>
+                <a href="team.html">Team</a>
+            </nav>
+            <a href="home.html" class="logo">
+                <span class="logo-mark">
+                    <img src="images/BrightPathlogo.png" alt="BrightPath Logo">
+                </span>
+                <span class="logo-text">
+                    <span class="logo-name">BrightPath</span>
+                    <span class="logo-tagline">Learn &middot; Grow &middot; Succeed</span>
+                </span>
+            </a>
+            <nav class="nav-group nav-right">
+                <a href="profile.html">Profile</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="sitemap.html">Sitemap</a>
+            </nav>
+            <a href="ais.html" class="btn nav-cta">Take Action &rarr;</a>
+            <button class="nav-toggle" id="navToggle" type="button" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+    <main>
+        <span class="eyebrow-plain">Gallery</span>
+        <h1>A few moments that stuck with us</h1>
+        <p class="hero-lede" style="max-width:65ch;margin-bottom:1.5rem;">
+            These are some of the real scenes that got us thinking about this SDG in the first place.
+            Click any photo for the full story behind it.
+        </p>
+
+        <h2 class="eyebrow-plain" style="font-size:0.78rem;">Photo Highlights</h2>
+        <div class="thumb-grid">
+            <div class="thumb" tabindex="0" role="button" aria-label="Open: Respect, Passed Down"
+                data-title="Respect, Passed Down"
+                data-desc="School children in Sri Lanka taking part in a community procession. Half of what keeps a community's education culture alive isn't in a classroom at all &mdash; it's moments like this, passed down rather than taught."
+                data-img="images/gallery1-procession-a.jpg">
+                <img src="images/gallery1-procession-a.jpg" alt="Sri Lankan school children in white uniforms taking part in a community procession">
+                <span class="thumb-title">Respect, Passed Down</span>
+            </div>
+
+            <div class="thumb" tabindex="0" role="button" aria-label="Open: Showing Up Together"
+                data-title="Showing Up Together"
+                data-desc="Same uniforms, same street, all showing up for the same thing. It's a small reminder that education isn't just an individual effort &mdash; it's a community one."
+                data-img="images/gallery2-procession-b.jpg">
+                <img src="images/gallery2-procession-b.jpg" alt="Sri Lankan school children in white uniforms gathered together">
+                <span class="thumb-title">Showing Up Together</span>
+            </div>
+
+            <div class="thumb" tabindex="0" role="button" aria-label="Open: The Digital Half of the Gap"
+                data-title="The Digital Half of the Gap"
+                data-desc="Access isn't just about books anymore &mdash; it's also about who gets a working computer and who doesn't. We couldn't confirm this exact photo was taken in Sri Lanka, but the gap it shows is one we see here too."
+                data-img="images/gallery3-computer-lab.jpg">
+                <img src="images/gallery3-computer-lab.jpg" alt="Students learning together in a school computer lab">
+                <span class="thumb-title">The Digital Half of the Gap</span>
+            </div>
+
+            <div class="thumb" tabindex="0" role="button" aria-label="Open: The Best Study Spot Isn't a Desk"
+                data-title="The Best Study Spot Isn't a Desk"
+                data-desc="Not every student has a quiet room to study in, and honestly, they shouldn't need one. A patch of sunlight and a borrowed book can be enough &mdash; if someone made sure the book was there to borrow."
+                data-img="images/gallery4-reading-outdoors.jpg">
+                <img src="images/gallery4-reading-outdoors.jpg" alt="A student reading a book outdoors in the sunlight">
+                <span class="thumb-title">The Best Study Spot Isn't a Desk</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- Extended view (hidden until a thumbnail is clicked) -->
+    <div id="galleryModal" class="modal hidden">
+        <div class="modal-content">
+            <button id="modalClose" class="modal-close" aria-label="Close">&times;</button>
+            <img id="modalImg" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBTAA7" alt="">
+            <h3 id="modalTitle"></h3>
+            <p id="modalDesc"></p>
+            <div class="modal-controls">
+                <button id="toggleColor" class="btn-mini" type="button">Toggle colour scheme</button>
+                <button id="toggleFont" class="btn-mini" type="button">Toggle font style</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-main">
+            <div class="footer-col footer-brand">
+                <a href="home.html" class="logo">
+                    <span class="logo-mark">
+                        <img src="images/BrightPathlogo.png" alt="BrightPath Logo">
+                    </span>
+                    <span class="logo-text">
+                        <span class="logo-name">BrightPath</span>
+                        <span class="logo-tagline">Learn &middot; Grow &middot; Succeed</span>
+                    </span>
+                </a>
+                <p>A student-led website for UN SDG 4 &mdash; Quality Education.</p>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Pages</span>
+                <a href="home.html">Home</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="ais.html">Action Simulator</a>
+                <a href="feedback.html">Feedback</a>
+                <a href="team.html">Team</a>
+                <a href="sitemap.html">Sitemap</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Page Owner</span>
+                <a href="pageEditor_ST1.html">Page Editor</a>
+                <a href="validation_ST1.html">Validation Page</a>
+                <a href="#">Accessibility / Compliance</a>
+            </div>
+            <div class="footer-col">
+                <span class="footer-heading">Student</span>
+                <p>Heshan Kavinda</p>
+                <p>Student 1 &middot; ID 20251117</p>
+                <p>Template &middot; Home &middot; Gallery</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <span>&copy; 2026 BrightPath &middot; University of Westminster group coursework</span>
+            <span>Compliant with JANET regulations</span>
+        </div>
+    </footer>
+
+    <script src="js/gallery.js"></script>
+    <script src="js/navbar.js"></script>
+</body>
+</html>

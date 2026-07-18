@@ -1,0 +1,12 @@
+/* ==========================================================================
+   style.css — BrightPath Global CSS entry point
+   Required by the coursework spec to exist at this exact path/name and
+   control the format of the entire website. The actual rules are split
+   into focused modules under /css for maintainability; this file just
+   pulls them together so every page only needs to link one stylesheet
+   for the shared site-wide styling.
+   ========================================================================== */
+
+@import url("css/global.css");
+@import url("css/navbar.css");
+@import url("css/footer.css");

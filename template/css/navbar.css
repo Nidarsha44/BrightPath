@@ -1,0 +1,261 @@
+/* ==========================================================================
+   NAVBAR.CSS — BrightPath's original two-tier navigation
+   (Structure inspired by a real-world layout pattern: thin utility bar +
+   a centered-logo main nav row with a CTA button. Content, wording, and
+   styling below are BrightPath's own — not copied from that reference.)
+   ========================================================================== */
+
+/* Header stays pinned to the top of the viewport while scrolling, with a
+   shadow that fades in once it's actually stuck to something (JS toggles
+   .header-scrolled on <header> based on scroll position — see js/navbar.js) */
+header {
+    background-color: var(--primary-color);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+    transition: box-shadow 0.3s ease;
+}
+header.header-scrolled {
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Thin top utility bar — visible only at the very top of the page.
+   Once the page scrolls, JS adds .header-scrolled and this collapses away
+   with an animated transition rather than disappearing instantly. */
+.utility-bar {
+    background-color: var(--secondary-color);
+    color: var(--border-color);
+    font-size: 0.75rem;
+    padding: 0.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 40px;
+    opacity: 1;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.25s ease, padding 0.35s ease;
+}
+.utility-bar a {
+    color: var(--border-color);
+    text-decoration: none;
+}
+.utility-bar a:hover {
+    color: white;
+    text-decoration: underline;
+}
+header.header-scrolled .utility-bar {
+    max-height: 0;
+    opacity: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* Main nav row — this is the part that "always stays": since <header> is
+   sticky, this row remains visible and pinned once the utility bar above it
+   collapses away, with a slightly tighter padding once scrolled for a subtle
+   animated "settle into place" feel. */
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.9rem 2rem;
+    gap: 1rem;
+    transition: padding 0.3s ease;
+}
+header.header-scrolled .main-nav {
+    padding-top: 0.6rem;
+    padding-bottom: 0.6rem;
+}
+
+.nav-group {
+    display: flex;
+    gap: 1.6rem;
+    flex: 1;
+}
+.nav-group.nav-right {
+    justify-content: flex-end;
+}
+
+.main-nav nav a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0.4rem 0.2rem;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+.main-nav nav a:hover {
+    color: white;
+    border-color: var(--accent-color);
+}
+.main-nav nav a.active {
+    color: white;
+    border-color: var(--accent-color);
+}
+
+/* Centred logo */
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    flex: 0 0 auto;
+}
+.logo-mark {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: linear-gradient(135deg, var(--link-color), var(--primary-color));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s ease, height 0.3s ease;
+}
+header.header-scrolled .logo-mark {
+    width: 36px;
+    height: 36px;
+}
+.logo-mark img {
+    width: 70%;
+    height: 70%;
+    object-fit: contain;
+}
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    text-decoration: none;
+}
+.logo-name {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-weight: 800;
+    color: white;
+    font-size: 1.3rem;
+}
+.logo-tagline {
+    color: var(--border-color);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+/* CTA button on the far right of the nav row */
+.nav-cta {
+    flex: 0 0 auto;
+    font-size: 0.85rem;
+    padding: 0.65rem 1.3rem;
+    background-color: var(--accent-color);
+    color: var(--secondary-color);
+}
+.nav-cta:hover {
+    background-color: white;
+    color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+/* Hamburger toggle button — hidden on desktop, shown only on narrow screens */
+.nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    flex: 0 0 auto;
+}
+.nav-toggle span {
+    display: block;
+    height: 2px;
+    background-color: white;
+    border-radius: 2px;
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(2) {
+    opacity: 0;
+}
+.nav-toggle[aria-expanded="true"] span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Narrow screens: collapse the nav links/CTA behind the hamburger toggle instead
+   of stacking everything open by default (which pushed real content off-screen) */
+@media (max-width: 860px) {
+    .utility-bar {
+        flex-direction: column;
+        gap: 0.2rem;
+        text-align: center;
+        padding: 0.5rem 1rem;
+        /* the base rule's max-height: 40px was sized for one row (desktop); stacked
+           into two lines on mobile, that height clipped the second line off */
+        max-height: 70px;
+    }
+
+    .main-nav {
+        flex-wrap: wrap;
+        justify-content: space-between;
+        padding: 0.7rem 1.2rem;
+    }
+
+    /* Explicit order so the logo + toggle stay on the first row no matter what —
+       without this, the toggle button (last in the HTML) ends up rendering
+       AFTER the opened menu, at the very bottom, instead of staying next to
+       the logo where it's easy to find and tap closed again. */
+    .logo {
+        order: 1;
+    }
+    .nav-toggle {
+        display: flex;
+        order: 2;
+    }
+    .nav-group.nav-left {
+        order: 3;
+    }
+    .nav-group.nav-right {
+        order: 4;
+    }
+    .nav-cta {
+        order: 5;
+    }
+
+    /* Collapsed by default: only the logo + toggle button show */
+    .nav-group,
+    .nav-cta {
+        display: none;
+        flex: 0 0 100%;
+        text-align: center;
+    }
+    .nav-group {
+        flex-direction: column;
+        gap: 0.9rem;
+        margin-top: 0.8rem;
+    }
+    .nav-group.nav-right {
+        justify-content: center;
+    }
+    .nav-cta {
+        justify-content: center;
+        margin: 1rem auto 0;
+    }
+
+    /* Opened via JS: .main-nav gets .nav-open, revealing the links below the
+       compact logo/toggle row */
+    .main-nav.nav-open .nav-group,
+    .main-nav.nav-open .nav-cta {
+        display: flex;
+    }
+}
